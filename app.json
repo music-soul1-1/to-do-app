@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "to-do-app",
+    "name": "To-Do",
     "slug": "to-do-app",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/icon/icon.png",
+    "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/icon/splash.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/icon/foreground.png",
+        "backgroundImage": "./assets/icon/background.png"
+      },
+      "package": "com.music_soul1_1.to_do_app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "afc0dacc-b95b-492f-a706-87d4257b046a"
+      }
     }
   }
 }
