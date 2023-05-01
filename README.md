@@ -22,12 +22,16 @@ Theming is supported by [React Native Paper](https://reactnativepaper.com/).
 
 ## Screenshots:
 
-
+#### Dark theme:
+![screenshot-1](https://user-images.githubusercontent.com/72669184/235497284-63635ed7-65b5-4934-80e7-31dcb0ae691f.jpg)
+#### White theme:
+![screenshot-2](https://user-images.githubusercontent.com/72669184/235497290-4255c0e5-6c9c-4c08-b33e-6f663d485f96.jpg)
 
 
 ## TODO:
 * fix a bug when a keyboard disappeares when user clicks on the text input near the bottom of the screen
 * fix other bugs
+* change app icon
 * improve styling
 * improve code readability
 
