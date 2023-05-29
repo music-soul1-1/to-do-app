@@ -1,7 +1,7 @@
 # To-Do app
 
 ### Save your tasks and notes in one app!
-The app is built with [React Native](https://reactnative.dev/).
+The app is built with [React Native CLI](https://reactnative.dev/).
 It uses [Async Storage](https://react-native-async-storage.github.io/async-storage/) to save data.
 Theming is supported by [React Native Paper](https://reactnativepaper.com/).
 
@@ -11,7 +11,7 @@ Theming is supported by [React Native Paper](https://reactnativepaper.com/).
 * save your tasks
 * save your notes
 * UI supports light and dark themes(according to device preferences)
-* UI is native
+* UI design is native
 * Material Design 3
 * data is saved automatically
 
@@ -30,13 +30,21 @@ Theming is supported by [React Native Paper](https://reactnativepaper.com/).
 
 ## TODO:
 * fix a bug when a keyboard disappeares when user clicks on the text input near the bottom of the screen
-* fix a bug when the app crashes when user changes the completion state of a task twice
+* remove theme colors declarations from App.js adn screen files
 * fix other bugs
-* change app icon
 * improve styling
 * improve code readability
 
 ## Changelog:
+
+### v.0.0.3
+* now the app uses React Native CLI instead of Expo. Expo-managed project can be found at expo branch(it will not be updated).
+* fixed a bug when app crashed when user changed the state of tasks to not completed.
+* app icon changed.
+
+### v.0.0.2
+* alerts added(instead of console.log()).
+* refactoring and small changes.
 
 ### v.0.0.1:
 * first release

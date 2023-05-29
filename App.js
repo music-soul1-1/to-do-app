@@ -10,7 +10,6 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import ToDoScreen from './components/ToDoScreen.js';
 import NotesScreen from "./components/NotesScreen.js";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { styles } from './App.styles.js';
 
 import {Provider as PaperProvider } from 'react-native-paper';
 
@@ -175,8 +174,7 @@ export default function App() {
                                 component={ToDoScreen}
                                 options={{
                                   headerTitle: 'To-Do',
-                                  headerStyle: styles.header,
-                                  headerTitleStyle: styles.headerTitle,
+                                  headerShadowVisible: true
                                 }}
                               />
                             </Stack.Navigator>
@@ -199,6 +197,7 @@ export default function App() {
                               component={NotesScreen}
                               options={{
                                 headerTitle: "Notes",
+                                headerShadowVisible: true
                               }}
                             />
                           </Stack.Navigator>

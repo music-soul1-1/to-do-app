@@ -1,8 +1,7 @@
 //#region +---imports---+
 import React, { useEffect } from 'react';
-import { View, useColorScheme, FlatList, Keyboard, Alert } from 'react-native';
+import { View, useColorScheme, FlatList, Keyboard, Alert, StatusBar } from 'react-native';
 import { styles } from '../App.styles.js';
-import { StatusBar } from 'expo-status-bar';
 import { Button, TextInput, IconButton, FAB, Dialog, Portal } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 //#endregion
@@ -158,10 +157,8 @@ export default function ToDo ({navigation}) {
               underlineColor="transparent"
               outlineColor="transparent"
               contentStyle={[
-                {width: 240},
-                item.completed ? 
-                (colorScheme == 'dark' ? styles.comletedTask.dark : styles.comletedTask.light) : 
-                (colorScheme == 'dark' ? styles.textFieldDark : styles.textFieldLight)
+                {width: 240, textDecorationLine: 'none' },
+                item.completed && { textDecorationLine: 'line-through', color: 'gray' },
               ]}
               style={[
                 styles.taskTextInput, 

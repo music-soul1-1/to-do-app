@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, useColorScheme, Keyboard, FlatList, Alert } from 'react-native';
+import { View, useColorScheme, Keyboard, FlatList, Alert, StatusBar } from 'react-native';
 import { styles } from '../App.styles.js';
-import { StatusBar } from 'expo-status-bar';
 import { Button, TextInput, Dialog, Portal, IconButton, FAB } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
