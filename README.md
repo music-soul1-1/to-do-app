@@ -1,5 +1,7 @@
 # To-Do app
 
+## Note: this is Expo-managed project branch. Please switch to `master` as this branch will not be updated.
+
 ### Save your tasks and notes in one app!
 The app is built with [React Native](https://reactnative.dev/).
 It uses [Async Storage](https://react-native-async-storage.github.io/async-storage/) to save data.
@@ -37,6 +39,10 @@ Theming is supported by [React Native Paper](https://reactnativepaper.com/).
 * improve code readability
 
 ## Changelog:
+
+### v.0.0.2
+* alerts added(instead of console.log()).
+* refactoring and small changes.
 
 ### v.0.0.1:
 * first release
