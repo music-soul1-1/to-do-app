@@ -30,6 +30,7 @@ Theming is supported by [React Native Paper](https://reactnativepaper.com/).
 
 ## TODO:
 * fix a bug when a keyboard disappeares when user clicks on the text input near the bottom of the screen
+* fix a bug when the app crashes when user changes the completion state of a task twice
 * fix other bugs
 * change app icon
 * improve styling
