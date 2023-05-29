@@ -1,6 +1,6 @@
 //#region +---imports---+
 import React, { useEffect } from 'react';
-import { View, useColorScheme, FlatList, Keyboard } from 'react-native';
+import { View, useColorScheme, FlatList, Keyboard, Alert } from 'react-native';
 import { styles } from '../App.styles.js';
 import { StatusBar } from 'expo-status-bar';
 import { Button, TextInput, IconButton, FAB, Dialog, Portal } from 'react-native-paper';
@@ -30,7 +30,7 @@ export default function ToDo ({navigation}) {
         setTasks(savedTasks != null ? JSON.parse(savedTasks) : []);
       }
       catch(error) {
-        console.log(error);
+        Alert.alert('Error', 'There was an error loading tasks');
       }
     };
     loadTasks();
@@ -48,6 +48,16 @@ export default function ToDo ({navigation}) {
   
   }, []);
 
+  // updating tasks in storage
+  useEffect(() => {
+    try {
+      AsyncStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+    catch (error) {
+      Alert.alert('Error', 'There was an error saving tasks');
+    };
+  }, [tasks]);
+
   const addTask = async () => {
     // if taskName is not empty:
     if (textInputValue && textInputValue.trim() !== "") {
@@ -55,57 +65,27 @@ export default function ToDo ({navigation}) {
       const updatedTasks = [...tasks, newTask];
       setTasks(updatedTasks); // updating tasks array
       setTextValue('');
-      
-      try {
-        await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
-      }
-      catch(error) {
-        console.log(error);
-      }
       hideInput();
     }
-    
   };
 
   const deleteTask = async (taskIndex) => {
-    const updatedTasks = tasks.filter((task, index) => index !== taskIndex);
-    setTasks(updatedTasks);
-
-    try {
-      await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
-    } 
-    catch(error) {
-      console.error(error);
-    }
+    setTasks(tasks.filter((task, index) => index !== taskIndex));
   };
 
   const removeAllTasks = async () => {
     setTasks([]);
-
-    try {
-      await AsyncStorage.setItem('tasks', JSON.stringify([]));
-    }
-    catch (error) {
-      console.log(error);
-    }
     hideDialog();
   };
 
   const updateTaskText = async (taskIndex, newTaskText) => {
-    const updatedTasks = tasks.map((task, index) => {
+    setTasks(tasks.map((task, index) => {
       if (index === taskIndex) {
         return Object.assign({}, task, {name: newTaskText});
       }
       return task;
-    });
-    setTasks(updatedTasks);
-
-    try {
-      await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
-    }
-    catch(error) {
-      console.log(error);
-    }
+    })
+    );
   };
 
   const updateTaskState = async (taskIndex, completed) => {
@@ -114,15 +94,8 @@ export default function ToDo ({navigation}) {
     
     updatedTasks[taskIndex] = updatedTask;
     setTasks(updatedTasks);
-
-    try {
-      await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
-    }
-    catch (error) {
-      console.log(error);
-    }
   };
-
+  
   //#endregion
 
   return (

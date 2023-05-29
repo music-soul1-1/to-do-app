@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, useColorScheme, Keyboard, FlatList } from 'react-native';
+import { View, useColorScheme, Keyboard, FlatList, Alert } from 'react-native';
 import { styles } from '../App.styles.js';
 import { StatusBar } from 'expo-status-bar';
 import { Button, TextInput, Dialog, Portal, IconButton, FAB } from 'react-native-paper';
@@ -28,7 +28,7 @@ export default function Notes({navigation}) {
         setNotes(savedNotes != null ? JSON.parse(savedNotes) : []);
       }
       catch (error) {
-        console.log(error);
+        Alert.alert('Error', 'There was an error loading notes');
       }
     };
     loadNotes();
@@ -46,6 +46,16 @@ export default function Notes({navigation}) {
     });
   }, []);
 
+  // updating notes in storage
+  useEffect(() => {
+    try {
+      AsyncStorage.setItem('notes', JSON.stringify(notes));
+    }
+    catch (error) {
+      Alert.alert('Error', 'There was an error saving notes notes');
+    };
+  }, [notes])
+
   const addNote = async () => {
     if (textInputValue && textInputValue.trim() !== "") {
       const newNote = {id: Math.random(), name: textInputValue};
@@ -53,54 +63,26 @@ export default function Notes({navigation}) {
       setNotes(updatedNotes);
       setTextValue('');
 
-      try {
-        await AsyncStorage.setItem('notes', JSON.stringify(updatedNotes));
-      }
-      catch (error) {
-        console.log(error);
-      }
       hideInput();
     }
   };
 
   const updateNote = async (noteIndex, newNoteText) => {
-    const updatedNotes = notes.map((note, index) => {
+    setNotes(notes.map((note, index) => {
       if (index == noteIndex) {
         return Object.assign({}, note, {name: newNoteText});
       }
       return note;
-    });
-    setNotes(updatedNotes);
-
-    try {
-      await AsyncStorage.setItem('notes', JSON.stringify(updatedNotes));
-    }
-    catch (error) {
-      console.log(error);
-    }
+    })
+    );
   };
 
   const deleteNote = async (noteIndex) => {
-    const updatedNotes = notes.filter((note, index) => index !== noteIndex);
-    setNotes(updatedNotes);
-
-    try {
-      await AsyncStorage.setItem('notes', JSON.stringify(updatedNotes));
-    }
-    catch (error) {
-      console.log(error);
-    }
+    setNotes(notes.filter((note, index) => index !== noteIndex));
   }
 
   const removeAllNotes = async () => {
     setNotes([]);
-
-    try {
-      await AsyncStorage.setItem('notes', JSON.stringify([]));
-    }
-    catch (error) {
-      console.log(error);
-    }
     hideDialog();
   }
 
