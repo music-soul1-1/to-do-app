@@ -29,6 +29,7 @@ Theming is supported by [React Native Paper](https://reactnativepaper.com/).
 
 
 ## TODO:
+* switch to TypeScript
 * fix a bug when a keyboard disappeares when user clicks on the text input near the bottom of the screen
 * remove theme colors declarations from App.js adn screen files
 * fix other bugs
